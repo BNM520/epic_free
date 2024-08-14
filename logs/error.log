@@ -1,4 +1,4 @@
-2024-08-14 06:31:15 | ERROR    | __main__:run:158 | An error has been caught in function 'run', process 'MainProcess' (3732), thread 'MainThread' (139656299273088): - {}
+2024-08-15 06:30:55 | ERROR    | __main__:run:158 | An error has been caught in function 'run', process 'MainProcess' (3676), thread 'MainThread' (139866897775488): - {}
 Traceback (most recent call last):
   File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 162, in <module>
     asyncio.run(run())
@@ -16,39 +16,8 @@ Traceback (most recent call last):
     await agent.stash()
   File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 151, in stash
     await self.claim_epic_games(context)
-  File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 122, in claim_epic_games
-    await epic.claim_weekly_games(page, single_promotions)
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 189, in async_wrapped
-    return await copy(fn, *args, **kwargs)
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 111, in __call__
-    do = await self.iter(retry_state=retry_state)
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 153, in iter
-    result = await action(retry_state)
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/tenacity/_utils.py", line 99, in inner
-    return call(*args, **kwargs)
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/tenacity/__init__.py", line 418, in exc_check
-    raise retry_exc.reraise()
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/tenacity/__init__.py", line 185, in reraise
-    raise self.last_attempt.result()
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/concurrent/futures/_base.py", line 451, in result
-    return self.__get_result()
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
-    raise self._exception
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/tenacity/asyncio/__init__.py", line 114, in __call__
-    result = await fn(*args, **kwargs)
-  File "/home/runner/work/epic_free/epic_free/epic/src/epic_games/agent.py", line 295, in claim_weekly_games
-    await page.goto(promotion.url, wait_until="load")
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/playwright/async_api/_generated.py", line 8805, in goto
-    await self._impl_obj.goto(
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/playwright/_impl/_page.py", line 524, in goto
-    return await self._main_frame.goto(**locals_to_params(locals()))
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/playwright/_impl/_frame.py", line 145, in goto
-    await self._channel.send("goto", locals_to_params(locals()))
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 59, in send
-    return await self._connection.wrap_api_call(
-  File "/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 514, in wrap_api_call
-    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
-playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
-Call log:
-navigating to "https://store.epicgames.com/en-US/p/dnf-duel-07d055", waiting until "load"
-
+  File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 98, in claim_epic_games
+    if await epic.authorize(page):
+  File "/home/runner/work/epic_free/epic_free/epic/src/epic_games/agent.py", line 269, in authorize
+    raise RuntimeError(f"Failed to flush token - agent={self.__class__.__name__}")
+RuntimeError: Failed to flush token - agent=EpicGames
