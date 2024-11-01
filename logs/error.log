@@ -1,5 +1,5 @@
-2024-11-01 06:32:16 | ERROR    | hcaptcha_challenger.onnx.modelhub:flush_runtime_assets:190 | 0 - {}
-2024-11-01 06:33:49 | ERROR    | __main__:run:158 | An error has been caught in function 'run', process 'MainProcess' (3699), thread 'MainThread' (139840767589248): - {}
+2024-11-02 06:31:29 | ERROR    | hcaptcha_challenger.onnx.modelhub:flush_runtime_assets:190 | 0 - {}
+2024-11-02 06:33:07 | ERROR    | __main__:run:158 | An error has been caught in function 'run', process 'MainProcess' (3716), thread 'MainThread' (140398897093504): - {}
 Traceback (most recent call last):
   File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 162, in <module>
     asyncio.run(run())
