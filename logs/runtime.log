@@ -1,5 +1,12 @@
-2025-03-21 06:32:41 | INFO    | __main__:stash:131 | run - {'image': '20231121', 'version': '0.10.1.post2', 'role': 'EpicPlayer', 'headless': True}
-2025-03-21 06:33:14 | ERROR    | __main__:run:158 | An error has been caught in function 'run', process 'MainProcess' (3458), thread 'MainThread' (140014194969472): - {}
+2025-03-22 06:32:53 | INFO    | __main__:stash:131 | run - {'image': '20231121', 'version': '0.10.1.post2', 'role': 'EpicPlayer', 'headless': True}
+2025-03-22 06:33:00 | INFO    | __main__:claim_epic_games:97 | Try to flush cookie - {'task': 'claim_epic_games'}
+2025-03-22 06:33:03 | INFO    | epic_games.agent:_login:237 | login-with-email - {'url': 'https://www.epicgames.com/id/login?lang=en-US&noHostRedirect=true&redirectUrl=https://store.epicgames.com/en-US/free-games&__cf_chl_rt_tk=Q5sBHugM_LOlm3jc5nuLqSmnU9SfYLenAJz3QAVzmVI-1742596383-1.0.1.1-fXjnqZ2kSaB12fva3qUQHL1LQhw5NlTv6DBJNq4IlX0'}
+2025-03-22 06:33:33 | WARNING    | epic_games.agent:authorize:266 | 执行超时 - {'task': 'authorize', 'retry': 0}
+2025-03-22 06:33:36 | INFO    | epic_games.agent:_login:237 | login-with-email - {'url': 'https://www.epicgames.com/id/login?lang=en-US&noHostRedirect=true&redirectUrl=https://store.epicgames.com/en-US/free-games&__cf_chl_rt_tk=S.svnEDYd1W2R2gaX8kgAoGJA1w1JmgfAfdMGEc5E.4-1742596416-1.0.1.1-E_NuQtnQJ4NNucceuYsg1dufYqbzk2NgqdbghZ7nw9o'}
+2025-03-22 06:34:06 | WARNING    | epic_games.agent:authorize:266 | 执行超时 - {'task': 'authorize', 'retry': 1}
+2025-03-22 06:34:09 | INFO    | epic_games.agent:_login:237 | login-with-email - {'url': 'https://www.epicgames.com/id/login?lang=en-US&noHostRedirect=true&redirectUrl=https://store.epicgames.com/en-US/free-games&__cf_chl_rt_tk=qQzWpQvEW7QMu_hu4J6k9Pu3MqoLGpGbkJQLjd22DH0-1742596449-1.0.1.1-JJ2nwlSCpCkwf4OPXMJ9YTAMs9D4zLshVfY5ixoXqjI'}
+2025-03-22 06:34:39 | WARNING    | epic_games.agent:authorize:266 | 执行超时 - {'task': 'authorize', 'retry': 2}
+2025-03-22 06:34:39 | ERROR    | __main__:run:158 | An error has been caught in function 'run', process 'MainProcess' (3440), thread 'MainThread' (139904899906432): - {}
 Traceback (most recent call last):
   File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 162, in <module>
     asyncio.run(run())
@@ -15,21 +22,10 @@ Traceback (most recent call last):
     self._context.run(self._callback, *self._args)
 > File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 158, in run
     await agent.stash()
-  File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 149, in stash
-    if not await self.prelude_with_context(context):
-  File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 73, in prelude_with_context
-    await page.goto(url, wait_until="networkidle")
-  File "/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/playwright/async_api/_generated.py", line 8987, in goto
-    await self._impl_obj.goto(
-  File "/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/playwright/_impl/_page.py", line 552, in goto
-    return await self._main_frame.goto(**locals_to_params(locals()))
-  File "/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/playwright/_impl/_frame.py", line 145, in goto
-    await self._channel.send("goto", locals_to_params(locals()))
-  File "/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 61, in send
-    return await self._connection.wrap_api_call(
-  File "/opt/hostedtoolcache/Python/3.10.16/x64/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 528, in wrap_api_call
-    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
-playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
-Call log:
-  - navigating to "https://www.epicgames.com/account/creator-programs", waiting until "networkidle"
-
+  File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 151, in stash
+    await self.claim_epic_games(context)
+  File "/home/runner/work/epic_free/epic_free/epic/src/claim.py", line 98, in claim_epic_games
+    if await epic.authorize(page):
+  File "/home/runner/work/epic_free/epic_free/epic/src/epic_games/agent.py", line 269, in authorize
+    raise RuntimeError(f"Failed to flush token - agent={self.__class__.__name__}")
+RuntimeError: Failed to flush token - agent=EpicGames
